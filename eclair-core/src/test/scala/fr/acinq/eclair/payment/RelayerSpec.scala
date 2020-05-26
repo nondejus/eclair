@@ -64,7 +64,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
   val channelId_ab = randomBytes32
   val channelId_bc = randomBytes32
 
-  test("relay an htlc-add") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay an htlc-add") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -85,7 +86,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("relay an htlc-add with onion tlv payload") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay an htlc-add with onion tlv payload") { f =>
     import f._
     import fr.acinq.eclair.wire.OnionTlv._
 
@@ -113,7 +115,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("relay an htlc-add with retries") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay an htlc-add with retries") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -157,7 +160,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("relay a trampoline htlc-add with retries") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay a trampoline htlc-add with retries") { f =>
     import f._
 
     // we tell the relayer about channel B-C
@@ -249,7 +253,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     register.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when we have no channel_update for the next channel") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when we have no channel_update for the next channel") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -268,7 +273,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when register returns an error") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when register returns an error") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -294,7 +300,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when the channel is advertised as unusable (down)") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when the channel is advertised as unusable (down)") { f =>
     import f._
 
     // check that payments are sent properly
@@ -326,7 +333,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when the requested channel is disabled") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when the requested channel is disabled") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -366,7 +374,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay a trampoline htlc-add when trampoline is disabled") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay a trampoline htlc-add when trampoline is disabled") { f =>
     import f._
 
     val nodeParams = TestConstants.Bob.nodeParams.copy(enableTrampolinePayment = false)
@@ -392,7 +401,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when amount is below the next hop's requirements") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when amount is below the next hop's requirements") { f =>
     import f._
 
     // we use this to build a valid onion
@@ -413,7 +423,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when expiry does not match next hop's requirements") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when expiry does not match next hop's requirements") { f =>
     import f._
 
     val hops1 = hops.updated(1, hops(1).copy(lastUpdate = hops(1).lastUpdate.copy(cltvExpiryDelta = CltvExpiryDelta(0))))
@@ -432,7 +443,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("fail to relay an htlc-add when relay fee isn't sufficient") { f =>
+  // we don't relay payment on Android apps
+  ignore("fail to relay an htlc-add when relay fee isn't sufficient") { f =>
     import f._
 
     val hops1 = hops.updated(1, hops(1).copy(lastUpdate = hops(1).lastUpdate.copy(feeBaseMsat = hops(1).lastUpdate.feeBaseMsat / 2)))
@@ -451,7 +463,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("correctly translates errors returned by channel when attempting to add an htlc") { f =>
+  // we don't relay payment on Android apps
+  ignore("correctly translates errors returned by channel when attempting to add an htlc") { f =>
     import f._
 
     val paymentHash = randomBytes32
@@ -484,7 +497,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     paymentHandler.expectNoMsg(50 millis)
   }
 
-  test("relay an htlc-fulfill") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay an htlc-fulfill") { f =>
     import f._
     val eventListener = TestProbe()
     system.eventStream.subscribe(eventListener.ref, classOf[PaymentEvent])
@@ -504,11 +518,13 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     }
   }
 
-  test("relay a trampoline htlc-fulfill") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay a trampoline htlc-fulfill") { f =>
     testRelayTrampolineHtlcFulfill(f, onChain = false)
   }
 
-  test("relay a trampoline on-chain htlc-fulfill") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay a trampoline on-chain htlc-fulfill") { f =>
     testRelayTrampolineHtlcFulfill(f, onChain = true)
   }
 
@@ -554,7 +570,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     payFSM.expectNoMsg(50 millis)
   }
 
-  test("relay an htlc-fail") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay an htlc-fail") { f =>
     import f._
 
     // we build a fake htlc for the downstream channel
@@ -569,7 +586,8 @@ class RelayerSpec extends TestKitBaseClass with FixtureAnyFunSuiteLike {
     }
   }
 
-  test("relay a trampoline htlc-fail") { f =>
+  // we don't relay payment on Android apps
+  ignore("relay a trampoline htlc-fail") { f =>
     import f._
 
     val payFSM = TestProbe()

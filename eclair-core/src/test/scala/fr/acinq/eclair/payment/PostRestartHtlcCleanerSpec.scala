@@ -298,7 +298,8 @@ class PostRestartHtlcCleanerSpec extends TestKitBaseClass with FixtureAnyFunSuit
     ))
   }
 
-  test("ignore htlcs in closing downstream channels that have been settled on-chain") { f =>
+  // we don't relay payment on Android apps
+  ignore("ignore htlcs in closing downstream channels that have been settled on-chain") { f =>
     import f._
 
     // There are three pending payments.
@@ -415,7 +416,8 @@ class PostRestartHtlcCleanerSpec extends TestKitBaseClass with FixtureAnyFunSuit
     channel_upstream_3.expectNoMsg(100 millis)
   }
 
-  test("handle a trampoline relay htlc-fail") { f =>
+  // we don't relay payment on Android apps
+  ignore("handle a trampoline relay htlc-fail") { f =>
     import f._
 
     val testCase = setupTrampolinePayments(nodeParams)
@@ -445,7 +447,8 @@ class PostRestartHtlcCleanerSpec extends TestKitBaseClass with FixtureAnyFunSuit
     eventListener.expectNoMsg(100 millis)
   }
 
-  test("handle a trampoline relay htlc-fulfill") { f =>
+  // we don't relay payment on Android apps
+  ignore("handle a trampoline relay htlc-fulfill") { f =>
     import f._
 
     val testCase = setupTrampolinePayments(nodeParams)
@@ -474,7 +477,8 @@ class PostRestartHtlcCleanerSpec extends TestKitBaseClass with FixtureAnyFunSuit
     eventListener.expectNoMsg(100 millis)
   }
 
-  test("handle a trampoline relay htlc-fail followed by htlc-fulfill") { f =>
+  // we don't relay payment on Android apps
+  ignore("handle a trampoline relay htlc-fail followed by htlc-fulfill") { f =>
     import f._
 
     val testCase = setupTrampolinePayments(nodeParams)
